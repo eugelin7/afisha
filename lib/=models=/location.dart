@@ -13,6 +13,7 @@ class Location {
     required this.address,
   });
 
+  //-----
   factory Location.fromJson(Map<String, dynamic> json) {
     try {
       return Location(

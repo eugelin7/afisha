@@ -1,3 +1,4 @@
+/*
 import 'package:afisha/logic/app_privider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -62,3 +63,5 @@ class _EventsLoadingErrorState extends State<EventsLoadingError> {
     );
   }
 }
+
+*/

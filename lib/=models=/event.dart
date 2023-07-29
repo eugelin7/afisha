@@ -1,3 +1,4 @@
+import 'package:afisha/=models=/_utils.dart';
 import 'package:afisha/app/logger.dart';
 import 'package:afisha/app/utils.dart';
 import 'package:afisha/=models=/location.dart';
@@ -29,15 +30,15 @@ class Event {
     required this.url,
   });
 
+  //-----
   factory Event.fromJson(Map<String, dynamic> json) {
     try {
       return Event(
         id: json['id'],
         creatorId: json['creatorId'] ?? '',
-        title: json['title'] ?? '',
-        description: json['description'] ?? '',
-        //date: DateTime.tryParse(json['date'].toString()),
-        date: DateTime.fromMillisecondsSinceEpoch(json['date'] * 1000),
+        title: jsonStringValue(json['title']) ?? '',
+        description: jsonStringValue(json['description']) ?? '',
+        date: DateTime.fromMillisecondsSinceEpoch(json['date']),
         durationInSeconds: int.tryParse(json['durationInSeconds'].toString()) ?? 0,
         image: json['image'],
         location: Location.fromJson(json['location']),

@@ -19,15 +19,12 @@ class EventItem extends StatelessWidget {
               fit: StackFit.expand,
               children: [
                 CachedNetworkImage(
-                  placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                  placeholder: (_, __) => const Center(child: CircularProgressIndicator()),
                   imageUrl: event.image.toString(),
                   fit: BoxFit.fitWidth,
-                  errorWidget: (context, url, error) => Image.asset(
-                    'assets/image_event_placeholder.png',
-                    fit: BoxFit.fitWidth,
-                  ),
+                  errorWidget: (_, __, ___) => Image.asset(
+                      'assets/images/image_event_placeholder.png',
+                      fit: BoxFit.fitWidth),
                 ),
                 Positioned(
                   top: 12,

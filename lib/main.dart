@@ -1,6 +1,7 @@
 import 'package:afisha/app/app.dart';
 import 'package:afisha/app/logger.dart';
 import 'package:afisha/data/impl/afisha_api.dart';
+import 'package:afisha/data/impl/afisha_loc_st.dart';
 import 'package:afisha/logic/app_privider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -31,12 +32,20 @@ void main() async {
 
   //---
   final afishaApi = AfishaApi();
+  final afishaLocSt = AfishaLocSt();
+
+  await afishaLocSt.init();
 
   //---
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AppProvider(api: afishaApi)..getAllEvents()),
+        ChangeNotifierProvider(
+          create: (_) => AppProvider(
+            api: afishaApi,
+            locSt: afishaLocSt,
+          )..getAllEvents(),
+        ),
       ],
       child: App(),
     ),

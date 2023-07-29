@@ -1,20 +1,28 @@
 import 'dart:collection';
 import 'package:afisha/=models=/event.dart';
+import 'package:afisha/app/logger.dart';
 import 'package:afisha/data/i_afisha_api.dart';
+import 'package:afisha/data/i_afisha_loc_st.dart';
 import 'package:afisha/logic/x_status.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class AppProvider extends ChangeNotifier {
   final IAfishaApi _api;
+  final IAfishaLocSt _locSt;
 
-  AppProvider({required IAfishaApi api})
+  AppProvider({required IAfishaApi api, required IAfishaLocSt locSt})
       : _api = api,
+        _locSt = locSt,
         super();
+
+  final _logger = GetIt.I<Logger>();
 
   //---
   List<Event> _events = [];
   XStatus _eventsLoadingStatus = XStatus.initial;
-  String _eventsLoadingErrorMsg = '';
+  bool? _loadedFromServer;
+  DateTime? _dateOfLastSaving;
   String _searchEventString = '';
   //---
 
@@ -27,24 +35,31 @@ class AppProvider extends ChangeNotifier {
   }
 
   XStatus get eventsLoadingStatus => _eventsLoadingStatus;
-  String get eventsLoadingErrorMsg => _eventsLoadingErrorMsg;
+  bool? get loadedFromServer => _loadedFromServer;
+  DateTime? get dateOfLastSaving => _dateOfLastSaving;
   String get searchEventString => _searchEventString;
 
   //-----
   void getAllEvents() async {
+    _logger.info('Loading events...');
     _eventsLoadingStatus = XStatus.inProgress;
-    _eventsLoadingErrorMsg = '';
+    _loadedFromServer = null;
     notifyListeners();
     final res = await _api.fetchEvents();
     if (res.success) {
+      _logger.good('Events have been loaded from server');
       _events = [...res.data!];
+      _loadedFromServer = true;
+      _locSt.saveEvents(_events);
       _eventsLoadingStatus = XStatus.success;
     } else {
-      _events = [];
-      _eventsLoadingStatus = XStatus.failure;
-      _eventsLoadingErrorMsg = (res.errorCode == null)
-          ? res.errorMessage ?? 'Error'
-          : 'Error code: ${res.errorCode}\n${res.errorMessage ?? ''}';
+      _logger.warning('Error while loading from server.');
+      _logger.info('Loading from Local Storage...');
+      _events = [...await _locSt.loadEvents()];
+      _dateOfLastSaving = await _locSt.dateOfLastSaving;
+      _loadedFromServer = false;
+      _eventsLoadingStatus = XStatus.success;
+      _logger.good('Success. Date of last saving: $_dateOfLastSaving');
     }
     notifyListeners();
   }
