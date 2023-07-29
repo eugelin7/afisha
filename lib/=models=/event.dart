@@ -1,6 +1,5 @@
 import 'package:afisha/=models=/_utils.dart';
 import 'package:afisha/app/logger.dart';
-import 'package:afisha/app/utils.dart';
 import 'package:afisha/=models=/location.dart';
 import 'package:afisha/=models=/price.dart';
 import 'package:get_it/get_it.dart';

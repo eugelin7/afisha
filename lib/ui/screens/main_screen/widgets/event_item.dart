@@ -1,5 +1,6 @@
 import 'package:afisha/=models=/event.dart';
 import 'package:afisha/ui/common_widgets/price_widget.dart';
+import 'package:afisha/ui/screens/main_screen/widgets/fav_button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -29,17 +30,13 @@ class EventItem extends StatelessWidget {
                 ),
                 Positioned(
                   top: 12,
-                  left: 10,
+                  left: 11,
                   child: PriceWidget(price: event.price),
                 ),
-                const Positioned(
+                Positioned(
                   top: 12,
-                  right: 16,
-                  // child: FavoriteIconButton(
-                  //   selected: favorite,
-                  //   onPressed: onAddToFavorite,
-                  // ),
-                  child: Icon(Icons.heart_broken),
+                  right: 12,
+                  child: FavButton(eventId: event.id),
                 ),
               ],
             ),

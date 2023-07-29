@@ -23,6 +23,7 @@ class AppProvider extends ChangeNotifier {
   XStatus _eventsLoadingStatus = XStatus.initial;
   bool? _loadedFromServer;
   DateTime? _dateOfLastSaving;
+  Set<String> _favEventIds = {};
   String _searchEventString = '';
   //---
 
@@ -37,6 +38,7 @@ class AppProvider extends ChangeNotifier {
   XStatus get eventsLoadingStatus => _eventsLoadingStatus;
   bool? get loadedFromServer => _loadedFromServer;
   DateTime? get dateOfLastSaving => _dateOfLastSaving;
+  Set<String> get favEventIds => _favEventIds;
   String get searchEventString => _searchEventString;
 
   //-----
@@ -61,6 +63,23 @@ class AppProvider extends ChangeNotifier {
       _eventsLoadingStatus = XStatus.success;
       _logger.good('Success. Date of last saving: $_dateOfLastSaving');
     }
+    _favEventIds = (await _locSt.loadFavIdList()).toSet();
+    notifyListeners();
+  }
+
+  //-----
+  void addEventToFavList(String eventId) async {
+    _favEventIds.add(eventId);
+    await _locSt.saveToFavIdList(eventId);
+    _logger.good('Event Id $eventId saved to favorites');
+    notifyListeners();
+  }
+
+  //-----
+  void deleteEventFromFavList(String eventId) async {
+    _favEventIds.remove(eventId);
+    await _locSt.deleteFromFavIdList(eventId);
+    _logger.good('Event Id $eventId removed from favorites');
     notifyListeners();
   }
 
