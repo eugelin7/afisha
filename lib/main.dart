@@ -2,7 +2,7 @@ import 'package:afisha/app/app.dart';
 import 'package:afisha/app/logger.dart';
 import 'package:afisha/data/impl/afisha_api.dart';
 import 'package:afisha/data/impl/afisha_loc_st.dart';
-import 'package:afisha/logic/app_privider.dart';
+import 'package:afisha/logic/app_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,4 +1,5 @@
 import 'package:afisha/=models=/event.dart';
+import 'package:afisha/ui/common_widgets/price_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -28,8 +29,8 @@ class EventItem extends StatelessWidget {
                 ),
                 Positioned(
                   top: 12,
-                  left: 16,
-                  child: Text(event.price.toString()),
+                  left: 10,
+                  child: PriceWidget(price: event.price),
                 ),
                 const Positioned(
                   top: 12,

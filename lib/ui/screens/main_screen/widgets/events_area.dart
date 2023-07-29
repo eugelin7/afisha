@@ -1,4 +1,4 @@
-import 'package:afisha/logic/app_privider.dart';
+import 'package:afisha/logic/app_provider.dart';
 import 'package:afisha/logic/x_status.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/events_list.dart';
 import 'package:flutter/material.dart';

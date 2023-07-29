@@ -1,4 +1,5 @@
 import 'package:afisha/ui/screens/main_screen/widgets/events_area.dart';
+import 'package:afisha/ui/screens/main_screen/widgets/offline_indicator.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {
@@ -10,7 +11,14 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Afisha'),
       ),
-      body: const EventsArea(),
+      body: const Column(
+        children: [
+          OfflineIndicator(),
+          Expanded(
+            child: EventsArea(),
+          )
+        ],
+      ),
     );
   }
 }
