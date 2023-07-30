@@ -1,4 +1,5 @@
 import 'package:afisha/logic/app_provider.dart';
+import 'package:afisha/ui/screens/main_screen/widgets/styles_main_app_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -70,15 +71,9 @@ class _MainAppBarState extends State<MainAppBar> {
                   cursorColor: Theme.of(context).colorScheme.onPrimary,
                   keyboardType: TextInputType.text,
                   textAlign: TextAlign.center,
-                  //decoration: kTextFieldDecorationSearchWord,
-                  style: TextStyle(
-                    fontSize: 16.5,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  ),
-                  onChanged: (value) {
-                    _appProv.setSearchEventString(value);
-                  },
+                  decoration: getTextFieldSearchDecoration(context),
+                  style: getTextFieldSearchTextStyle(context),
+                  onChanged: (value) => _appProv.setSearchEventString(value),
                 ),
               ),
               IconButton(

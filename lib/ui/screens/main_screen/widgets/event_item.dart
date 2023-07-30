@@ -2,7 +2,7 @@ import 'package:afisha/=models=/event.dart';
 import 'package:afisha/ui/common_widgets/cached_event_image.dart';
 import 'package:afisha/ui/common_widgets/price_widget.dart';
 import 'package:afisha/ui/screens/event_screen/event_screen.dart';
-import 'package:afisha/ui/screens/main_screen/widgets/fav_button.dart';
+import 'package:afisha/ui/screens/main_screen/widgets/fav_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -33,7 +33,7 @@ class EventItem extends StatelessWidget {
                 Positioned(
                   top: 12,
                   right: 12,
-                  child: FavButton(eventId: event.id),
+                  child: FavIconButton(eventId: event.id),
                 ),
               ],
             ),

@@ -2,9 +2,9 @@ import 'package:afisha/logic/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class FavButton extends StatelessWidget {
+class FavIconButton extends StatelessWidget {
   final String eventId;
-  const FavButton({super.key, required this.eventId});
+  const FavIconButton({super.key, required this.eventId});
 
   @override
   Widget build(BuildContext context) {
