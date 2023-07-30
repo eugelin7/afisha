@@ -73,7 +73,9 @@ class EventItem extends StatelessWidget {
                     onTap: () {},
                     child: Text(
                       '${event.location.country}, ${event.location.city}',
-                      style: Theme.of(context).textTheme.labelMedium,
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                     ),
                   ),
                 ),

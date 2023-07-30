@@ -35,6 +35,9 @@ class AppProvider extends ChangeNotifier {
         .toList());
   }
 
+  UnmodifiableListView<Event> get favEvents =>
+      UnmodifiableListView(_events.where((el) => _favEventIds.contains(el.id)).toList());
+
   XStatus get eventsLoadingStatus => _eventsLoadingStatus;
   bool? get loadedFromServer => _loadedFromServer;
   DateTime? get dateOfLastSaving => _dateOfLastSaving;
