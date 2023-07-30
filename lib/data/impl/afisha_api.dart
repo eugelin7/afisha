@@ -1,4 +1,4 @@
-import 'package:afisha/data/api_response.dart';
+import 'package:afisha/=common=/classes/api_response.dart';
 import 'package:afisha/data/i_afisha_api.dart';
 import 'package:afisha/data/impl/api_base.dart';
 import 'package:afisha/=models=/event.dart';

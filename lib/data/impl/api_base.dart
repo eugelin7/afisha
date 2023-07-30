@@ -1,5 +1,5 @@
 import 'package:afisha/app/logger.dart';
-import 'package:afisha/data/api_response.dart';
+import 'package:afisha/=common=/classes/api_response.dart';
 import 'package:afisha/data/impl/dio_options.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -20,10 +20,6 @@ abstract class ApiBase {
     String endPoint, {
     Map<String, dynamic>? params,
   }) async {
-    // TODO:
-    // If there is no Internet connection:
-    // return ApiResponse<dynamic>(success: false, errorCode: -1);
-
     final result = ApiResponse<dynamic>(success: false);
     try {
       Response<dynamic> response;

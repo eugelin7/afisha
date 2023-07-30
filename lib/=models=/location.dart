@@ -1,4 +1,4 @@
-import 'package:afisha/=models=/_utils.dart';
+import 'package:afisha/=common=/utils.dart';
 import 'package:afisha/app/logger.dart';
 import 'package:get_it/get_it.dart';
 

@@ -1,8 +1,10 @@
 import 'package:afisha/=models=/event.dart';
+import 'package:afisha/ui/common_widgets/cached_event_image.dart';
 import 'package:afisha/ui/common_widgets/price_widget.dart';
+import 'package:afisha/ui/screens/event_screen/event_screen.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/fav_button.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class EventItem extends StatelessWidget {
   final Event event;
@@ -11,7 +13,9 @@ class EventItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        context.pushNamed(EventScreen.name, pathParameters: {'id': event.id});
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -20,14 +24,7 @@ class EventItem extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                CachedNetworkImage(
-                  placeholder: (_, __) => const Center(child: CircularProgressIndicator()),
-                  imageUrl: event.image.toString(),
-                  fit: BoxFit.fitWidth,
-                  errorWidget: (_, __, ___) => Image.asset(
-                      'assets/images/image_event_placeholder.png',
-                      fit: BoxFit.fitWidth),
-                ),
+                CachedEventImage(imageUrl: event.image.toString()),
                 Positioned(
                   top: 12,
                   left: 11,

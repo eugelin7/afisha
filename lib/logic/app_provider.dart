@@ -3,7 +3,7 @@ import 'package:afisha/=models=/event.dart';
 import 'package:afisha/app/logger.dart';
 import 'package:afisha/data/i_afisha_api.dart';
 import 'package:afisha/data/i_afisha_loc_st.dart';
-import 'package:afisha/logic/x_status.dart';
+import 'package:afisha/=common=/classes/x_status.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
