@@ -1,3 +1,4 @@
+import 'package:afisha/=models=/event.dart';
 import 'package:afisha/logic/app_provider.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/event_item.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +9,18 @@ class EventsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appProv = Provider.of<AppProvider>(context, listen: false);
+    final events = context.select<AppProvider, List<Event>>((pr) => pr.events);
+
+    // TODO: if events.length == 0  текст: "Ничего не найдено"
+
     return RefreshIndicator(
       onRefresh: () async {
+        final appProv = Provider.of<AppProvider>(context, listen: false);
         appProv.getAllEvents();
       },
       child: ListView.builder(
-        itemCount: appProv.events.length,
-        itemBuilder: (_, i) => EventItem(event: appProv.events[i]),
+        itemCount: events.length,
+        itemBuilder: (_, i) => EventItem(event: events[i]),
       ),
     );
   }

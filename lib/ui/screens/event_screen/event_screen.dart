@@ -2,9 +2,13 @@ import 'package:afisha/=models=/event.dart';
 import 'package:afisha/logic/app_provider.dart';
 import 'package:afisha/ui/common_widgets/cached_event_image.dart';
 import 'package:afisha/ui/common_widgets/price_widget.dart';
+import 'package:afisha/ui/screens/event_screen/widgets/fav_indicator.dart';
+import 'package:afisha/ui/screens/event_screen/widgets/fav_status_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
+import 'package:share_plus/share_plus.dart';
 
 class EventScreen extends StatelessWidget {
   static const name = 'event_screen';
@@ -25,7 +29,15 @@ class EventScreen extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Share.share('shareEventLinkMessageText'.tr(
+                namedArgs: {
+                  'title': event.title,
+                  'location': event.location.city,
+                  'URL': 'https://afisha.peredelano.com/event/${event.id}',
+                },
+              ));
+            },
             icon: const Icon(Icons.ios_share),
           )
         ],
@@ -42,6 +54,11 @@ class EventScreen extends StatelessWidget {
                   top: 12,
                   left: 11,
                   child: PriceWidget(price: event.price),
+                ),
+                Positioned(
+                  top: 12,
+                  right: 11,
+                  child: FavIndicator(eventId: event.id),
                 ),
               ],
             ),
@@ -68,7 +85,7 @@ class EventScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   ReadMoreText(
-                    event.description * 10,
+                    event.description,
                     trimLines: 5,
                     trimCollapsedText: 'trimCollapsedText',
                     trimExpandedText: 'trimExpandedText',
@@ -83,6 +100,9 @@ class EventScreen extends StatelessWidget {
                         ?.copyWith(color: Theme.of(context).colorScheme.primary),
                   ),
                   const SizedBox(height: 20),
+                  Row(
+                    children: [const Spacer(), FavStatusButton(eventId: event.id), const Spacer()],
+                  ),
                 ],
               ),
             ),

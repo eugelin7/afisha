@@ -10,8 +10,8 @@ class CachedEventImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       placeholder: (_, __) => Center(
-        child: SpinKitRipple(
-          size: 70,
+        child: SpinKitThreeBounce(
+          size: 40,
           color: Theme.of(context).colorScheme.primary.withOpacity(0.6),
         ),
       ),

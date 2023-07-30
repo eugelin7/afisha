@@ -1,6 +1,7 @@
 import 'package:afisha/ui/screens/main_screen/all_events_page.dart';
 import 'package:afisha/ui/screens/main_screen/fav_events_page.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/fav_events_count_indicator.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -45,16 +46,16 @@ class _MainScreenState extends State<MainScreen> {
             curve: Curves.easeInOut,
           );
         },
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            selectedIcon: Icon(Icons.local_activity),
-            icon: Icon(Icons.local_activity_outlined),
-            label: 'billboardTab',
+            selectedIcon: const Icon(Icons.local_activity),
+            icon: const Icon(Icons.local_activity_outlined),
+            label: 'billboardTab'.tr(),
           ),
           NavigationDestination(
-            selectedIcon: _FavIcon(icon: Icons.favorite),
-            icon: _FavIcon(icon: Icons.favorite_outline),
-            label: 'favoritesTab',
+            selectedIcon: const _FavIcon(icon: Icons.favorite),
+            icon: const _FavIcon(icon: Icons.favorite_outline),
+            label: 'favoritesTab'.tr(),
           ),
         ],
       ),

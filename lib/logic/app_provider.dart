@@ -90,6 +90,7 @@ class AppProvider extends ChangeNotifier {
   void setSearchEventString(String newSearchString) {
     if (_searchEventString.trim().toLowerCase() == newSearchString.trim().toLowerCase()) return;
     _searchEventString = newSearchString.trim().toLowerCase();
+    _logger.good('Search string: $_searchEventString  |  Found: ${events.length} events');
     notifyListeners();
   }
 }

@@ -1,4 +1,5 @@
 import 'package:afisha/app/routes.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -23,17 +24,9 @@ class App extends StatelessWidget {
       routerDelegate: _router.routerDelegate,
       title: 'Afisha',
       //theme: themeLight,
-      // supportedLocales: const [
-      //   Locale('ru'), // Russian
-      //   Locale('en'), // English
-      // ],
-      // localizationsDelegates: const [
-      //   AppLocalizations.delegate,
-      //   GlobalMaterialLocalizations.delegate,
-      //   GlobalCupertinoLocalizations.delegate,
-      //   GlobalWidgetsLocalizations.delegate,
-      // ],
-      locale: const Locale('ru'),
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       debugShowCheckedModeBanner: false,
     );
   }
