@@ -10,5 +10,19 @@ class AfishaApi extends ApiBase implements IAfishaApi {
     final resp = await apiCall(ApiMethod.get, '/events');
     return responseToList<Event>(resp, (e) => Event.fromJson(e));
   }
+
+  //----
+  @override
+  Future<ApiResponse<List<String>>> fetchCountries() async {
+    final resp = await apiCall(ApiMethod.get, '/location/usedCountries');
+    return responseToList<String>(resp, (e) => e.toString());
+  }
+
+  //----
+  @override
+  Future<ApiResponse<List<String>>> fetchCities({required String country}) async {
+    final resp = await apiCall(ApiMethod.get, '/location/usedCities/$country');
+    return responseToList<String>(resp, (e) => e.toString());
+  }
   //----
 }

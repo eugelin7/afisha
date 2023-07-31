@@ -1,7 +1,6 @@
-import 'package:afisha/=models=/filter_params.dart';
 import 'package:afisha/logic/app_provider.dart';
-import 'package:afisha/ui/screens/main_screen/local_logic/main_screen_provider.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/styles_main_app_bar.dart';
+import 'package:afisha/ui/screens/main_screen/widgets/toggle_filter_sheet_icon_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +44,7 @@ class _MainAppBarState extends State<MainAppBar> {
           color: Theme.of(context).colorScheme.primary,
           child: Row(
             children: [
-              const _FilterIconButton(),
+              const ToggleFilterSheetIconButton(),
               Expanded(child: Center(child: Text('eventsScreenTitle'.tr()))),
               IconButton(
                 onPressed: () {
@@ -96,33 +95,3 @@ class _MainAppBarState extends State<MainAppBar> {
     );
   }
 }
-
-//===============
-class _FilterIconButton extends StatelessWidget {
-  const _FilterIconButton();
-
-  @override
-  Widget build(BuildContext context) {
-    final filterParams = context.select<AppProvider, FilterParams?>((pr) => pr.filterParams);
-
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        IconButton(
-          onPressed: () => context.read<MainScreenProvider>().toggleFilterSheetVisibility(),
-          icon: const Icon(Icons.filter_list),
-        ),
-        if (filterParams != null)
-          Positioned(
-            top: 11,
-            right: 7,
-            child: CircleAvatar(
-              radius: 4.5,
-              backgroundColor: Theme.of(context).colorScheme.errorContainer,
-            ),
-          )
-      ],
-    );
-  }
-}
-//===============

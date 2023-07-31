@@ -31,8 +31,29 @@ class AppProvider extends ChangeNotifier {
 
   UnmodifiableListView<Event> get allEvents => UnmodifiableListView(_events);
   UnmodifiableListView<Event> get events {
-    if (_searchEventString.trim().isEmpty) return UnmodifiableListView(_events);
-    return UnmodifiableListView(_events
+    if ((_searchEventString.trim().isEmpty) && (filterParams == null)) {
+      return UnmodifiableListView(_events);
+    }
+    // Применяем фильтр
+    List<Event> events = [];
+    if (filterParams == null) {
+      events = _events;
+    } else {
+      events = _events.where((e) {
+        bool countryMatch = true;
+        if (filterParams!.country != null) {
+          countryMatch = (e.location.country == filterParams!.country);
+        }
+        bool cityMatch = true;
+        if (filterParams!.city != null) {
+          cityMatch = (e.location.city == filterParams!.city);
+        }
+        return countryMatch && cityMatch;
+      }).toList();
+    }
+    // Применяем поиск (по отфильтрованным данным)
+    if (_searchEventString.trim().isEmpty) return UnmodifiableListView(events);
+    return UnmodifiableListView(events
         .where((el) => el.title.toLowerCase().contains(_searchEventString.trim().toLowerCase()))
         .toList());
   }
@@ -97,14 +118,11 @@ class AppProvider extends ChangeNotifier {
   }
 
   //-----
-  void clearFilterParams() {
-    _filterParams = null;
-    notifyListeners();
-  }
-
-  void setFilterParams(FilterParams filterParams) {
+  void setFilterParams(FilterParams? filterParams) {
     // TODO: if equal() then return
     _filterParams = filterParams;
+    _logger
+        .info('Filter params: country = ${_filterParams?.country}, city = ${_filterParams?.city}');
     notifyListeners();
   }
   //-----

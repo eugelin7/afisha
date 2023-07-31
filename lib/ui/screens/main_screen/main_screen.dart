@@ -1,9 +1,12 @@
+import 'package:afisha/data/i_afisha_api.dart';
 import 'package:afisha/ui/screens/main_screen/all_events_page.dart';
 import 'package:afisha/ui/screens/main_screen/fav_events_page.dart';
+import 'package:afisha/ui/screens/main_screen/local_logic/filter_provider.dart';
 import 'package:afisha/ui/screens/main_screen/local_logic/main_screen_provider.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/fav_navigation_icon.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
@@ -25,8 +28,11 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => MainScreenProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => MainScreenProvider()),
+        ChangeNotifierProvider(create: (_) => FilterProvider(api: GetIt.I<IAfishaApi>())),
+      ],
       child: Scaffold(
         body: PageView(
           controller: _pageController,

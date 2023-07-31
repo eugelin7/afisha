@@ -1,5 +1,7 @@
 import 'package:afisha/app/app.dart';
 import 'package:afisha/app/logger.dart';
+import 'package:afisha/data/i_afisha_api.dart';
+import 'package:afisha/data/i_afisha_loc_st.dart';
 import 'package:afisha/data/impl/afisha_api.dart';
 import 'package:afisha/data/impl/afisha_loc_st.dart';
 import 'package:afisha/logic/app_provider.dart';
@@ -33,10 +35,9 @@ void main() async {
   ]);
 
   //---
-  final afishaApi = AfishaApi();
-  final afishaLocSt = AfishaLocSt();
-
-  await afishaLocSt.init();
+  GetIt.I.registerSingleton<IAfishaApi>(AfishaApi());
+  GetIt.I.registerSingleton<IAfishaLocSt>(AfishaLocSt());
+  await GetIt.I<IAfishaLocSt>().init();
 
   //---
   runApp(
@@ -44,8 +45,8 @@ void main() async {
       providers: [
         ChangeNotifierProvider(
           create: (_) => AppProvider(
-            api: afishaApi,
-            locSt: afishaLocSt,
+            api: GetIt.I<IAfishaApi>(),
+            locSt: GetIt.I<IAfishaLocSt>(),
           )..getAllEvents(),
         ),
       ],
