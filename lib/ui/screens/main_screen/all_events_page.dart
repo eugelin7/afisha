@@ -1,6 +1,7 @@
 import 'package:afisha/ui/screens/main_screen/widgets/events_area.dart';
+import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/main_app_bar.dart';
-import 'package:afisha/ui/screens/main_screen/widgets/offline_indicator.dart';
+import 'package:afisha/ui/screens/main_screen/widgets/offline_mode_bar.dart';
 import 'package:flutter/material.dart';
 
 class AllEventsPage extends StatelessWidget {
@@ -13,12 +14,24 @@ class AllEventsPage extends StatelessWidget {
         title: const MainAppBar(),
         titleSpacing: 0,
       ),
-      body: const Column(
+      body: const Stack(
         children: [
-          OfflineIndicator(),
-          Expanded(
-            child: EventsArea(),
-          )
+          //--------
+          Column(
+            children: [
+              OfflineModeBar(),
+              Expanded(
+                child: EventsArea(),
+              )
+            ],
+          ),
+          //--------
+          Positioned(
+            top: 0,
+            left: 0,
+            child: FilterSheet(),
+          ),
+          //--------
         ],
       ),
     );

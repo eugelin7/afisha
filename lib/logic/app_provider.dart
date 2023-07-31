@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'package:afisha/=models=/event.dart';
+import 'package:afisha/=models=/filter_params.dart';
 import 'package:afisha/app/logger.dart';
 import 'package:afisha/data/i_afisha_api.dart';
 import 'package:afisha/data/i_afisha_loc_st.dart';
@@ -25,6 +26,7 @@ class AppProvider extends ChangeNotifier {
   DateTime? _dateOfLastSaving;
   Set<String> _favEventIds = {};
   String _searchEventString = '';
+  FilterParams? _filterParams;
   //---
 
   UnmodifiableListView<Event> get allEvents => UnmodifiableListView(_events);
@@ -43,6 +45,7 @@ class AppProvider extends ChangeNotifier {
   DateTime? get dateOfLastSaving => _dateOfLastSaving;
   Set<String> get favEventIds => _favEventIds;
   String get searchEventString => _searchEventString;
+  FilterParams? get filterParams => _filterParams;
 
   //-----
   void getAllEvents() async {
@@ -78,7 +81,6 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //-----
   void deleteEventFromFavList(String eventId) async {
     _favEventIds.remove(eventId);
     await _locSt.deleteFromFavIdList(eventId);
@@ -93,4 +95,17 @@ class AppProvider extends ChangeNotifier {
     _logger.good('Search string: $_searchEventString  |  Found: ${events.length} events');
     notifyListeners();
   }
+
+  //-----
+  void clearFilterParams() {
+    _filterParams = null;
+    notifyListeners();
+  }
+
+  void setFilterParams(FilterParams filterParams) {
+    // TODO: if equal() then return
+    _filterParams = filterParams;
+    notifyListeners();
+  }
+  //-----
 }

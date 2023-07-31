@@ -1,3 +1,4 @@
+import 'package:afisha/=common=/utils.dart';
 import 'package:afisha/=models=/event.dart';
 import 'package:afisha/ui/common_widgets/cached_event_image.dart';
 import 'package:afisha/ui/common_widgets/price_widget.dart';
@@ -60,8 +61,7 @@ class EventItem extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  //TimeUtils.formatDateTime(eventData.date),
-                  event.date.toString(),
+                  formatDateTime(event.date),
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 Padding(

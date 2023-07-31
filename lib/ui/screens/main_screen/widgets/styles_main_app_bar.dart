@@ -8,7 +8,7 @@ InputDecoration getTextFieldSearchDecoration(BuildContext context) {
     isDense: true,
     filled: true,
     fillColor: lighten(Theme.of(context).colorScheme.primary, 30),
-    contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 6),
+    contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
     border: const OutlineInputBorder(
       borderSide: BorderSide.none,
       borderRadius: BorderRadius.all(Radius.circular(kTextFieldSearchBorderRadius)),

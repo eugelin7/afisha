@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'dart:math';
 
+import 'package:intl/intl.dart';
+
 final _unescaper = HtmlUnescape();
 
 //-----
@@ -36,3 +38,7 @@ Color lighten(Color c, [int percent = 10]) {
 
 //-----
 
+String formatDateTime(DateTime? dt, [String format = 'dd MMMM yyyy, HH:mm']) {
+  if (dt == null) return '';
+  return DateFormat(format).format(dt);
+}

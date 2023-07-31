@@ -1,3 +1,4 @@
+import 'package:afisha/=common=/utils.dart';
 import 'package:afisha/=models=/event.dart';
 import 'package:afisha/logic/app_provider.dart';
 import 'package:afisha/ui/common_widgets/cached_event_image.dart';
@@ -71,8 +72,7 @@ class EventScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    //TimeUtils.formatDateTime(eventData.date),
-                    event.date.toString(),
+                    formatDateTime(event.date),
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 8),
