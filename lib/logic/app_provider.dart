@@ -30,6 +30,9 @@ class AppProvider extends ChangeNotifier {
   //---
 
   UnmodifiableListView<Event> get allEvents => UnmodifiableListView(_events);
+
+  //-----
+  // События (с учётом фильтра и поиска)
   UnmodifiableListView<Event> get events {
     if ((_searchEventString.trim().isEmpty) && (filterParams == null)) {
       return UnmodifiableListView(_events);
@@ -65,8 +68,11 @@ class AppProvider extends ChangeNotifier {
         .toList());
   }
 
+  //-----
+  // События в "Избранном"
   UnmodifiableListView<Event> get favEvents =>
       UnmodifiableListView(_events.where((el) => _favEventIds.contains(el.id)).toList());
+  //-----
 
   XStatus get eventsLoadingStatus => _eventsLoadingStatus;
   bool? get loadedFromServer => _loadedFromServer;
@@ -76,6 +82,7 @@ class AppProvider extends ChangeNotifier {
   FilterParams? get filterParams => _filterParams;
 
   //-----
+  // Получаем список событий (или с сервера или из лок.хранилища)
   void getAllEvents() async {
     _logger.info('Loading events...');
     _eventsLoadingStatus = XStatus.inProgress;
