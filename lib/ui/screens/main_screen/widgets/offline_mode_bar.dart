@@ -15,7 +15,7 @@ class OfflineModeBar extends StatelessWidget {
     //-----
     final appProv = Provider.of<AppProvider>(context, listen: false);
     final offlineStr = 'offlineMode'.tr();
-    final dateTimeStr = formatDateTime(appProv.dateOfLastSaving);
+    final dateTimeStr = formatDateTime(appProv.dateOfLastSaving, context.locale.languageCode);
     return Container(
       width: double.infinity,
       color: Theme.of(context).colorScheme.errorContainer,

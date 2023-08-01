@@ -4,6 +4,7 @@ import 'package:afisha/ui/common_widgets/cached_event_image.dart';
 import 'package:afisha/ui/common_widgets/price_widget.dart';
 import 'package:afisha/ui/screens/event_screen/event_screen.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/fav_icon_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -61,7 +62,7 @@ class EventItem extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  formatDateTime(event.date),
+                  formatDateTime(event.date, context.locale.languageCode),
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 Padding(

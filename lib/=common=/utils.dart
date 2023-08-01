@@ -38,7 +38,18 @@ Color lighten(Color c, [int percent = 10]) {
 
 //-----
 
-String formatDateTime(DateTime? dt, [String format = 'dd MMMM yyyy, HH:mm']) {
+String formatDateTime(
+  DateTime? dt, [
+  String locale = 'en-US',
+  String format = 'd MMMM yyyy, HH:mm',
+]) {
   if (dt == null) return '';
-  return DateFormat(format).format(dt);
+  return DateFormat(format, locale).format(dt);
+}
+
+//-----
+extension DayCompare on DateTime {
+  bool isSameDay(DateTime other) {
+    return year == other.year && month == other.month && day == other.day;
+  }
 }

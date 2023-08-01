@@ -48,7 +48,14 @@ class AppProvider extends ChangeNotifier {
         if (filterParams!.city != null) {
           cityMatch = (e.location.city == filterParams!.city);
         }
-        return countryMatch && cityMatch;
+        bool datesMatch = true;
+        if ((filterParams!.dateStart != null) &&
+            (filterParams!.dateEnd != null) &&
+            (e.date != null)) {
+          datesMatch =
+              e.date!.isAfter(filterParams!.dateStart!) && e.date!.isBefore(filterParams!.dateEnd!);
+        }
+        return countryMatch && cityMatch && datesMatch;
       }).toList();
     }
     // Применяем поиск (по отфильтрованным данным)
@@ -122,7 +129,8 @@ class AppProvider extends ChangeNotifier {
     // TODO: if equal() then return
     _filterParams = filterParams;
     _logger
-        .info('Filter params: country = ${_filterParams?.country}, city = ${_filterParams?.city}');
+        .info('Filter params: country = ${_filterParams?.country}, city = ${_filterParams?.city},\n'
+            'dateStart = ${_filterParams?.dateStart}, dateEnd = ${_filterParams?.dateEnd}');
     notifyListeners();
   }
   //-----

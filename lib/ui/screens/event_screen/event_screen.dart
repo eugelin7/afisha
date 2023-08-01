@@ -72,7 +72,7 @@ class EventScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    formatDateTime(event.date),
+                    formatDateTime(event.date, context.locale.languageCode),
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 8),

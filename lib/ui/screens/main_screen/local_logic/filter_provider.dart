@@ -18,11 +18,15 @@ class FilterProvider extends ChangeNotifier {
   List<String> _cities = [];
   String? _selectedCountry;
   String? _selectedCity;
+  DateTime? _dateStart;
+  DateTime? _dateEnd;
 
   UnmodifiableListView<String> get countries => UnmodifiableListView<String>(_countries);
   UnmodifiableListView<String> get cities => UnmodifiableListView<String>(_cities);
   String? get selectedCountry => _selectedCountry;
   String? get selectedCity => _selectedCity;
+  DateTime? get dateStart => _dateStart;
+  DateTime? get dateEnd => _dateEnd;
 
   //-----
   Future<void> getCountries() async {
@@ -69,9 +73,25 @@ class FilterProvider extends ChangeNotifier {
   }
 
   //-----
+  void setDates(DateTime dateStart, DateTime dateEnd) {
+    _dateStart = dateStart;
+    _dateEnd = dateEnd;
+    _logger.good('dateStart = $_dateStart, dateEnd = $_dateEnd');
+    notifyListeners();
+  }
+
+  //-----
   FilterParams? getFilterParams() {
-    if ((_selectedCountry == null) && (_selectedCity == null)) return null;
-    return FilterParams(country: _selectedCountry, city: _selectedCity);
+    if ((_selectedCountry == null) &&
+        (_selectedCity == null) &&
+        (_dateStart == null) &&
+        (_dateEnd == null)) return null;
+    return FilterParams(
+      country: _selectedCountry,
+      city: _selectedCity,
+      dateStart: _dateStart,
+      dateEnd: _dateEnd,
+    );
   }
 
   //-----
@@ -79,6 +99,8 @@ class FilterProvider extends ChangeNotifier {
     _selectedCountry = null;
     _cities = [];
     _selectedCity = null;
+    _dateStart = null;
+    _dateEnd = null;
     notifyListeners();
   }
 }
