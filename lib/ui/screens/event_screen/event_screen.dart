@@ -31,13 +31,15 @@ class EventScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Share.share('shareEventLinkMessageText'.tr(
-                namedArgs: {
-                  'title': event.title,
-                  'location': event.location.city,
-                  'URL': 'https://afisha.peredelano.com/event/${event.id}',
-                },
-              ));
+              Share.share(
+                'shareEventLinkMessageText'.tr(
+                  namedArgs: {
+                    'title': event.title,
+                    'location': event.location.city,
+                    'URL': 'https://afisha.peredelano.com/event/${event.id}',
+                  },
+                ),
+              );
             },
             icon: const Icon(Icons.ios_share),
           )

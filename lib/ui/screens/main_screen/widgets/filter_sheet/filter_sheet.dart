@@ -102,6 +102,9 @@ class _FilterSheetState extends State<FilterSheet> {
               const Spacer(),
               IconButton(
                 onPressed: () {
+                  if (_appProv.filterParams == null) {
+                    _mainScrProv.setFilterSheetVisibility(false);
+                  }
                   _filterProv.clearAllFields();
                   _appProv.setFilterParams(null);
                 },

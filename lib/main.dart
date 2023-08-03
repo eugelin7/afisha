@@ -2,9 +2,12 @@ import 'package:afisha/app/app.dart';
 import 'package:afisha/app/logger.dart';
 import 'package:afisha/data/i_afisha_api.dart';
 import 'package:afisha/data/i_afisha_loc_st.dart';
+import 'package:afisha/data/i_location_service.dart';
 import 'package:afisha/data/impl/afisha_api.dart';
 import 'package:afisha/data/impl/afisha_loc_st.dart';
+import 'package:afisha/data/impl/location_service.dart';
 import 'package:afisha/logic/app_provider.dart';
+import 'package:afisha/logic/location_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +40,7 @@ void main() async {
   //---
   GetIt.I.registerSingleton<IAfishaApi>(AfishaApi());
   GetIt.I.registerSingleton<IAfishaLocSt>(AfishaLocSt());
+  GetIt.I.registerSingleton<ILocationService>(LocationService());
   await GetIt.I<IAfishaLocSt>().init();
 
   //---
@@ -48,6 +52,11 @@ void main() async {
             api: GetIt.I<IAfishaApi>(),
             locSt: GetIt.I<IAfishaLocSt>(),
           )..getAllEvents(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => LocationProvider(
+            locationService: GetIt.I<ILocationService>(),
+          )..getCurrentLocation(),
         ),
       ],
       child: EasyLocalization(

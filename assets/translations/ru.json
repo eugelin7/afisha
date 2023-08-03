@@ -46,5 +46,9 @@
   "register": "Зарегистрироваться",
   "login": "Логин",
   "password": "Пароль",
-  "clearFilterParams": "Сбросить фильтр"
+  "clearFilterParams": "Сбросить фильтр",
+  "locationServicesAreDisabled": "Сервис определения местоположения недоступен",
+  "locationPermissionsAreDenied": "Нет прав доступа к сервису определения местоположения",
+  "locationPermissionsArePermanentlyDenied": "Нет прав доступа к сервису определения местоположения",
+  "yourCurrentLocation": "Ваше местоположение:"
 }

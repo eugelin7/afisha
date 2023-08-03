@@ -1,5 +1,6 @@
 import 'package:afisha/ui/screens/main_screen/widgets/events_area.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet/filter_sheet.dart';
+import 'package:afisha/ui/screens/main_screen/widgets/location_bar.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/main_app_bar/main_app_bar.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/offline_mode_bar.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class AllEventsPage extends StatelessWidget {
           Column(
             children: [
               OfflineModeBar(),
+              LocationBar(),
               Expanded(
                 child: EventsArea(),
               )
