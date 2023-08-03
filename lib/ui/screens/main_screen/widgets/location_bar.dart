@@ -16,48 +16,75 @@ class LocationBar extends StatelessWidget {
     final locationStr = context.read<LocationProvider>().locationString ?? '';
     if (locationStr.isEmpty) return const SizedBox.shrink();
 
+    return _AnimatedLocationBar(locationStr: locationStr);
+  }
+}
+
+//==============
+
+class _AnimatedLocationBar extends StatefulWidget {
+  final String locationStr;
+  const _AnimatedLocationBar({required this.locationStr});
+
+  @override
+  State<_AnimatedLocationBar> createState() => __AnimatedLocationBarState();
+}
+
+class __AnimatedLocationBarState extends State<_AnimatedLocationBar>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation _animation;
+  bool _isTextVisible = false;
+
+  @override
+  void initState() {
+    _controller = AnimationController(duration: const Duration(milliseconds: 500), vsync: this);
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+    _controller.addListener(() {
+      setState(() {});
+    });
+    _animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _isTextVisible = true;
+        setState(() {});
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _controller.forward();
+
     return Container(
       width: double.infinity,
+      height: _animation.value * 68,
       color: Theme.of(context).colorScheme.surface,
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 13),
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextOneLine('yourCurrentLocation'.tr(), style: Theme.of(context).textTheme.labelLarge),
-            const SizedBox(height: 3),
-            TextOneLine(locationStr,
-                style:
-                    Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold))
-          ],
+      child: Visibility(
+        visible: _isTextVisible,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextOneLine('yourCurrentLocation'.tr(),
+                  style: Theme.of(context).textTheme.labelLarge),
+              const SizedBox(height: 2.5),
+              TextOneLine(widget.locationStr,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 2),
+            ],
+          ),
         ),
       ),
     );
-
-    /*
-    Widget content;
-    switch (locationStatus) {
-      case XStatus.initial:
-      // content = const SizedBox.shrink();
-      // break;
-      case XStatus.inProgress:
-        content = const SizedBox.shrink();
-        break;
-      case XStatus.failure:
-        final errorMsg = context.read<LocationProvider>().errorMsg;
-        content = Text(errorMsg ?? 'Location error');
-        break;
-      case XStatus.success:
-        final locationStr = context.read<LocationProvider>().locationString;
-        content = Text(locationStr ?? '', style: Theme.of(context).textTheme.titleMedium);
-        break;
-    }
-    return Container(
-      width: double.infinity,
-      height: 50,
-      color: Theme.of(context).colorScheme.surface,
-      child: Center(child: content),
-    );
-    */
   }
 }
