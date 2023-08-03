@@ -1,7 +1,5 @@
-import 'package:geolocator/geolocator.dart';
+import 'package:afisha/=common=/classes/latlang.dart';
 
 abstract class ILocationService {
-  Future<Position> determineLocation();
-
-  Future<String> locationToString(Position location);
+  Future<LatLang> determineLocation();
 }

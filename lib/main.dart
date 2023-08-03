@@ -2,9 +2,11 @@ import 'package:afisha/app/app.dart';
 import 'package:afisha/app/logger.dart';
 import 'package:afisha/data/i_afisha_api.dart';
 import 'package:afisha/data/i_afisha_loc_st.dart';
+import 'package:afisha/data/i_geocoding_service.dart';
 import 'package:afisha/data/i_location_service.dart';
 import 'package:afisha/data/impl/afisha_api.dart';
 import 'package:afisha/data/impl/afisha_loc_st.dart';
+import 'package:afisha/data/impl/geocoding_service.dart';
 import 'package:afisha/data/impl/location_service.dart';
 import 'package:afisha/logic/app_provider.dart';
 import 'package:afisha/logic/location_provider.dart';
@@ -41,6 +43,7 @@ void main() async {
   GetIt.I.registerSingleton<IAfishaApi>(AfishaApi());
   GetIt.I.registerSingleton<IAfishaLocSt>(AfishaLocSt());
   GetIt.I.registerSingleton<ILocationService>(LocationService());
+  GetIt.I.registerSingleton<IGeocodingService>(GeocodingService());
   await GetIt.I<IAfishaLocSt>().init();
 
   //---

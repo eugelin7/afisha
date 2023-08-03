@@ -1,8 +1,9 @@
+import 'package:afisha/=common=/classes/latlang.dart';
 import 'package:afisha/=common=/classes/x_status.dart';
 import 'package:afisha/app/logger.dart';
+import 'package:afisha/data/i_geocoding_service.dart';
 import 'package:afisha/data/i_location_service.dart';
 import 'package:flutter/foundation.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get_it/get_it.dart';
 
 class LocationProvider extends ChangeNotifier {
@@ -13,9 +14,10 @@ class LocationProvider extends ChangeNotifier {
         super();
 
   final _logger = GetIt.I<Logger>();
+  final _geocodingService = GetIt.I<IGeocodingService>();
 
   XStatus _locationStatus = XStatus.initial;
-  Position? _location;
+  LatLang? _location;
   String? _locationString;
   String? _errorMsg;
 
@@ -32,7 +34,7 @@ class LocationProvider extends ChangeNotifier {
     notifyListeners();
     try {
       _location = await _locationService.determineLocation();
-      _locationString = await _locationService.locationToString(_location!);
+      _locationString = await _geocodingService.locationToString(_location!);
       _locationStatus = XStatus.success;
       _logger.good('Current location: $_locationString');
     } catch (e) {

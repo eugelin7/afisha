@@ -3,6 +3,7 @@ import 'package:afisha/=models=/event.dart';
 import 'package:afisha/logic/app_provider.dart';
 import 'package:afisha/ui/common_widgets/cached_event_image.dart';
 import 'package:afisha/ui/common_widgets/price_widget.dart';
+import 'package:afisha/ui/screens/event_screen/widgets/event_map.dart';
 import 'package:afisha/ui/screens/event_screen/widgets/fav_indicator.dart';
 import 'package:afisha/ui/screens/event_screen/widgets/fav_status_button.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -89,8 +90,8 @@ class EventScreen extends StatelessWidget {
                   ReadMoreText(
                     event.description,
                     trimLines: 5,
-                    trimCollapsedText: 'trimCollapsedText',
-                    trimExpandedText: 'trimExpandedText',
+                    trimCollapsedText: 'trimCollapsedText'.tr(),
+                    trimExpandedText: 'trimExpandedText'.tr(),
                     style: Theme.of(context).textTheme.bodyLarge,
                     moreStyle: Theme.of(context)
                         .textTheme
@@ -101,9 +102,15 @@ class EventScreen extends StatelessWidget {
                         .bodySmall
                         ?.copyWith(color: Theme.of(context).colorScheme.primary),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 18),
                   Row(
                     children: [const Spacer(), FavStatusButton(eventId: event.id), const Spacer()],
+                  ),
+                  const SizedBox(height: 22),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 250,
+                    child: EventMap(address: '${event.location.country}, ${event.location.city}'),
                   ),
                 ],
               ),
