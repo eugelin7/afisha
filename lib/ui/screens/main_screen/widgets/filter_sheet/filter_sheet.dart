@@ -1,6 +1,7 @@
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/logic/app_provider.dart';
-import 'package:afisha/ui/screens/main_screen/local_logic/filter_provider.dart';
-import 'package:afisha/ui/screens/main_screen/local_logic/main_screen_provider.dart';
+import 'package:afisha/ui/screens/main_screen/screen_logic/filter_provider.dart';
+import 'package:afisha/ui/screens/main_screen/screen_logic/main_screen_provider.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet/city_selector.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet/country_selector.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet/dates_selector.dart';
@@ -46,12 +47,12 @@ class _FilterSheetState extends State<FilterSheet> {
       return Container(
         height: 100,
         width: MediaQuery.of(context).size.width,
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.95),
+        color: context.theme.colorScheme.primary.withOpacity(0.95),
         child: Center(
           child: SizedBox(
               width: 25,
               height: 25,
-              child: CircularProgressIndicator(color: Theme.of(context).colorScheme.onPrimary)),
+              child: CircularProgressIndicator(color: context.theme.colorScheme.onPrimary)),
         ),
       );
     }
@@ -59,7 +60,7 @@ class _FilterSheetState extends State<FilterSheet> {
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      color: Theme.of(context).colorScheme.primary.withOpacity(0.95),
+      color: context.theme.colorScheme.primary.withOpacity(0.95),
       padding: const EdgeInsets.fromLTRB(20, 27, 20, 10),
       child: Column(
         children: [
@@ -111,7 +112,7 @@ class _FilterSheetState extends State<FilterSheet> {
                 icon: Icon(
                   Icons.close,
                   size: 27,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  color: context.theme.colorScheme.onPrimary,
                 ),
               ),
               const SizedBox(width: 8),
@@ -122,7 +123,7 @@ class _FilterSheetState extends State<FilterSheet> {
                   child: Icon(
                     Icons.check,
                     size: 32,
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    color: context.theme.colorScheme.onPrimary,
                   ),
                 ),
               ),

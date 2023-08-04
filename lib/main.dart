@@ -1,5 +1,6 @@
 import 'package:afisha/app/app.dart';
 import 'package:afisha/app/logger.dart';
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/data/i_afisha_api.dart';
 import 'package:afisha/data/i_afisha_loc_st.dart';
 import 'package:afisha/data/i_geocoding_service.dart';
@@ -50,12 +51,16 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
+        // Theme provider
+        ChangeNotifierProvider(create: (_) => AppTheme()),
+        //---
         ChangeNotifierProvider(
           create: (_) => AppProvider(
             api: GetIt.I<IAfishaApi>(),
             locSt: GetIt.I<IAfishaLocSt>(),
           )..getAllEvents(),
         ),
+        //---
         ChangeNotifierProvider(
           create: (_) => LocationProvider(
             locationService: GetIt.I<ILocationService>(),

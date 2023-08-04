@@ -1,6 +1,6 @@
 import 'package:afisha/=common=/utils.dart';
 import 'package:afisha/logic/app_provider.dart';
-import 'package:afisha/ui/screens/main_screen/local_logic/filter_provider.dart';
+import 'package:afisha/ui/screens/main_screen/screen_logic/filter_provider.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet/styles_filter_sheet.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:easy_localization/easy_localization.dart';

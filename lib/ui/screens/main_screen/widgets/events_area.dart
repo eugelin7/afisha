@@ -1,3 +1,4 @@
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/logic/app_provider.dart';
 import 'package:afisha/=common=/classes/x_status.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/events_list.dart';
@@ -17,7 +18,7 @@ class EventsArea extends StatelessWidget {
       case XStatus.inProgress:
         return Center(
           child: SpinKitThreeBounce(
-              size: 50, color: Theme.of(context).colorScheme.primary.withOpacity(0.6)),
+              size: 50, color: context.theme.colorScheme.primary.withOpacity(0.6)),
         );
       case XStatus.failure:
         //return const EventsLoadingError();

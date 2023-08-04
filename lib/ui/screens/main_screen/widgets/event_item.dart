@@ -1,5 +1,6 @@
 import 'package:afisha/=common=/utils.dart';
 import 'package:afisha/=models=/event.dart';
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/ui/common_widgets/cached_event_image.dart';
 import 'package:afisha/ui/common_widgets/price_widget.dart';
 import 'package:afisha/ui/screens/event_screen/event_screen.dart';
@@ -49,7 +50,7 @@ class EventItem extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
                   child: Text(
                     event.description,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: context.theme.textTheme.bodyMedium,
                     overflow: TextOverflow.fade,
                     maxLines: 3,
                   ),
@@ -58,12 +59,12 @@ class EventItem extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                   child: Text(
                     event.title,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: context.theme.textTheme.bodyLarge,
                   ),
                 ),
                 Text(
                   formatDateTime(event.date, context.locale.languageCode),
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: context.theme.textTheme.bodyMedium,
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 8, 0, 44),
@@ -71,9 +72,10 @@ class EventItem extends StatelessWidget {
                     onTap: () {},
                     child: Text(
                       '${event.location.country}, ${event.location.city}',
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
+                      style: context.theme.textTheme.labelMedium?.copyWith(
+                        color: context.theme.colorScheme.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),

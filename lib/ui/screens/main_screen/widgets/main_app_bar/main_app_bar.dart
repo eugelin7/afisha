@@ -1,3 +1,4 @@
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/logic/app_provider.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/main_app_bar/styles_main_app_bar.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/main_app_bar/toggle_filter_sheet_icon_button.dart';
@@ -41,7 +42,7 @@ class _MainAppBarState extends State<MainAppBar> {
         Container(
           width: double.infinity,
           height: kToolbarHeight,
-          color: Theme.of(context).colorScheme.primary,
+          color: context.theme.colorScheme.primary,
           child: Row(
             children: [
               const ToggleFilterSheetIconButton(),
@@ -61,7 +62,7 @@ class _MainAppBarState extends State<MainAppBar> {
         Container(
           width: double.infinity,
           height: kToolbarHeight,
-          color: Theme.of(context).colorScheme.primary,
+          color: context.theme.colorScheme.primary,
           child: Row(
             children: [
               const SizedBox(width: 24 /* 48 */),
@@ -69,7 +70,7 @@ class _MainAppBarState extends State<MainAppBar> {
                 child: TextField(
                   controller: _searchTextController,
                   focusNode: _searchFocusNode,
-                  cursorColor: Theme.of(context).colorScheme.onPrimary,
+                  cursorColor: context.theme.colorScheme.onPrimary,
                   keyboardType: TextInputType.text,
                   textAlign: TextAlign.center,
                   decoration: getTextFieldSearchDecoration(context),

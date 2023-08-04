@@ -1,6 +1,7 @@
 import 'package:afisha/=models=/filter_params.dart';
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/logic/app_provider.dart';
-import 'package:afisha/ui/screens/main_screen/local_logic/main_screen_provider.dart';
+import 'package:afisha/ui/screens/main_screen/screen_logic/main_screen_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +25,7 @@ class ToggleFilterSheetIconButton extends StatelessWidget {
             right: 7,
             child: CircleAvatar(
               radius: 4.5,
-              backgroundColor: Theme.of(context).colorScheme.errorContainer,
+              backgroundColor: context.theme.colorScheme.errorContainer,
             ),
           )
       ],

@@ -1,8 +1,8 @@
 import 'package:afisha/data/i_afisha_api.dart';
 import 'package:afisha/ui/screens/main_screen/all_events_page.dart';
 import 'package:afisha/ui/screens/main_screen/fav_events_page.dart';
-import 'package:afisha/ui/screens/main_screen/local_logic/filter_provider.dart';
-import 'package:afisha/ui/screens/main_screen/local_logic/main_screen_provider.dart';
+import 'package:afisha/ui/screens/main_screen/screen_logic/filter_provider.dart';
+import 'package:afisha/ui/screens/main_screen/screen_logic/main_screen_provider.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/fav_navigation_icon.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

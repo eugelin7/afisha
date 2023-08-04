@@ -1,3 +1,4 @@
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/logic/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,13 +26,13 @@ class FavIconButton extends StatelessWidget {
         height: 33,
         decoration: BoxDecoration(
           color: isFavorite
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.primary.withOpacity(0.7),
+              ? context.theme.colorScheme.primary
+              : context.theme.colorScheme.primary.withOpacity(0.7),
           borderRadius: BorderRadius.circular(40),
           boxShadow: isFavorite
               ? [
                   BoxShadow(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: context.theme.colorScheme.primary,
                     blurRadius: 0,
                     spreadRadius: 2,
                   )
@@ -39,11 +40,15 @@ class FavIconButton extends StatelessWidget {
               : [],
         ),
         child: Center(
-          child: Icon(
-            isFavorite ? Icons.favorite : Icons.favorite_border,
-            color: Theme.of(context).colorScheme.onPrimary,
-            size: isFavorite ? 20 : 18,
-          ),
+          child: isFavorite
+              ? Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Icon(Icons.favorite, color: context.theme.colorScheme.onPrimary, size: 22),
+                    Icon(Icons.favorite, color: Colors.red[600], size: 19),
+                  ],
+                )
+              : Icon(Icons.favorite_border, color: context.theme.colorScheme.onPrimary, size: 18),
         ),
       ),
     );

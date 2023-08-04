@@ -1,4 +1,5 @@
 import 'package:afisha/=common=/utils.dart';
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/logic/app_provider.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -18,14 +19,14 @@ class OfflineModeBar extends StatelessWidget {
     final dateTimeStr = formatDateTime(appProv.dateOfLastSaving, context.locale.languageCode);
     return Container(
       width: double.infinity,
-      color: Theme.of(context).colorScheme.errorContainer,
+      color: context.theme.colorScheme.errorContainer,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       child: Center(
         child: TextOneLine("$offlineStr  $dateTimeStr",
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: Theme.of(context).colorScheme.onErrorContainer,
-                  letterSpacing: -0.5,
-                )),
+            style: context.theme.textTheme.titleSmall?.copyWith(
+              color: context.theme.colorScheme.onErrorContainer,
+              letterSpacing: -0.5,
+            )),
       ),
     );
   }

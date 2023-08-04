@@ -1,5 +1,6 @@
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/logic/app_provider.dart';
-import 'package:afisha/ui/screens/main_screen/local_logic/filter_provider.dart';
+import 'package:afisha/ui/screens/main_screen/screen_logic/filter_provider.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet/styles_filter_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,9 +21,9 @@ class CountrySelector extends StatelessWidget {
           isDense: true,
           hint: Text('<Select country>', style: getHintTextStyle(context)),
           style: getTextStyle(context),
-          dropdownColor: Theme.of(context).colorScheme.primary.withOpacity(0.95),
-          iconEnabledColor: Theme.of(context).colorScheme.onPrimary,
-          iconDisabledColor: Theme.of(context).colorScheme.onPrimary.withOpacity(0.3),
+          dropdownColor: context.theme.colorScheme.primary.withOpacity(0.95),
+          iconEnabledColor: context.theme.colorScheme.onPrimary,
+          iconDisabledColor: context.theme.colorScheme.onPrimary.withOpacity(0.3),
           iconSize: kDropDownIconSize,
           value: selectedCountry,
           items: countries.map((e) => DropdownMenuItem<String>(value: e, child: Text(e))).toList(),

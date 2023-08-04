@@ -1,5 +1,6 @@
 import 'package:afisha/=common=/utils.dart';
 import 'package:afisha/=models=/event.dart';
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/logic/app_provider.dart';
 import 'package:afisha/ui/common_widgets/cached_event_image.dart';
 import 'package:afisha/ui/common_widgets/price_widget.dart';
@@ -76,31 +77,25 @@ class EventScreen extends StatelessWidget {
                 children: [
                   Text(
                     formatDateTime(event.date, context.locale.languageCode),
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: context.theme.textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     '${event.location.country}, ${event.location.city}',
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelMedium
-                        ?.copyWith(color: Theme.of(context).colorScheme.primary),
+                    style: context.theme.textTheme.labelMedium?.copyWith(
+                        color: context.theme.colorScheme.primary, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
                   ReadMoreText(
                     event.description,
                     trimLines: 5,
-                    trimCollapsedText: 'trimCollapsedText'.tr(),
-                    trimExpandedText: 'trimExpandedText'.tr(),
-                    style: Theme.of(context).textTheme.bodyLarge,
-                    moreStyle: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: Theme.of(context).colorScheme.primary),
-                    lessStyle: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: Theme.of(context).colorScheme.primary),
+                    trimCollapsedText: '  ${'trimCollapsedText'.tr()}',
+                    trimExpandedText: '  ${'trimExpandedText'.tr()}',
+                    style: context.theme.textTheme.bodyLarge,
+                    moreStyle: context.theme.textTheme.bodySmall
+                        ?.copyWith(color: context.theme.colorScheme.primary),
+                    lessStyle: context.theme.textTheme.bodySmall
+                        ?.copyWith(color: context.theme.colorScheme.primary),
                   ),
                   const SizedBox(height: 18),
                   Row(

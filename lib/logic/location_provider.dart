@@ -22,7 +22,7 @@ class LocationProvider extends ChangeNotifier {
   String? _errorMsg;
 
   XStatus get locationStatus => _locationStatus;
-  //Position? get location => _location;
+  //LatLang? get location => _location;
   String? get locationString => _locationString;
   String? get errorMsg => _errorMsg;
 

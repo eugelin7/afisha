@@ -1,4 +1,5 @@
 import 'package:afisha/=models=/price.dart';
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class PriceWidget extends StatelessWidget {
@@ -16,13 +17,13 @@ class PriceWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(8, 7, 8, 7),
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
+        color: context.theme.colorScheme.primary,
         borderRadius: BorderRadius.circular(30),
       ),
       child: Text(priceText,
-          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                color: Theme.of(context).colorScheme.onPrimary,
-              )),
+          style: context.theme.textTheme.labelLarge?.copyWith(
+            color: context.theme.colorScheme.onPrimary,
+          )),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/data/i_geocoding_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
@@ -53,7 +54,7 @@ class _EventMapState extends State<EventMap> {
       return Center(
         child: SpinKitThreeBounce(
           size: 40,
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.6),
+          color: context.theme.colorScheme.primary.withOpacity(0.6),
         ),
       );
     }
@@ -68,7 +69,7 @@ class _EventMapState extends State<EventMap> {
           controller: _controller,
           mapIsLoading: SpinKitThreeBounce(
             size: 40,
-            color: Theme.of(context).colorScheme.primary.withOpacity(0.6),
+            color: context.theme.colorScheme.primary.withOpacity(0.6),
           ),
           showZoomController: true,
           initZoom: 11,
@@ -76,7 +77,7 @@ class _EventMapState extends State<EventMap> {
             defaultMarker: MarkerIcon(
               icon: Icon(
                 Icons.pin_drop_rounded,
-                color: Theme.of(context).colorScheme.primary,
+                color: context.theme.colorScheme.primary,
                 size: 56,
               ),
             ),

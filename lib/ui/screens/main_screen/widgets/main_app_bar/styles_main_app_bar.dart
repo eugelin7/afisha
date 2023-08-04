@@ -1,4 +1,5 @@
 import 'package:afisha/=common=/utils.dart';
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 const kTextFieldSearchBorderRadius = 10.0;
@@ -7,7 +8,7 @@ InputDecoration getTextFieldSearchDecoration(BuildContext context) {
   return InputDecoration(
     isDense: true,
     filled: true,
-    fillColor: lighten(Theme.of(context).colorScheme.primary, 30),
+    fillColor: lighten(context.theme.colorScheme.primary, 30),
     contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
     border: const OutlineInputBorder(
       borderSide: BorderSide.none,
@@ -32,6 +33,6 @@ TextStyle getTextFieldSearchTextStyle(BuildContext context) {
   return TextStyle(
     fontSize: 16.5,
     fontWeight: FontWeight.bold,
-    color: Theme.of(context).colorScheme.onPrimary,
+    color: context.theme.colorScheme.onPrimary,
   );
 }

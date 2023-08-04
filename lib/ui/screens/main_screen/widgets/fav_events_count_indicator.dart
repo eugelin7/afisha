@@ -1,3 +1,4 @@
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/logic/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,17 +20,17 @@ class FavEventsCountIndicator extends StatelessWidget {
         width: (favEventsCount > 9) ? 20 : 14,
         height: 14,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.errorContainer,
+          color: context.theme.colorScheme.errorContainer,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Center(
           child: Text(
             countText,
             maxLines: 1,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.onErrorContainer,
-                ),
+            style: context.theme.textTheme.labelSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: context.theme.colorScheme.onErrorContainer,
+            ),
           ),
         ),
       ),

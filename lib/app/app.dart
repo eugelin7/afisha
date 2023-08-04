@@ -1,7 +1,9 @@
 import 'package:afisha/app/routes.dart';
+import 'package:afisha/app/theme/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 //---
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -23,7 +25,9 @@ class App extends StatelessWidget {
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,
       title: 'Afisha',
-      //theme: themeLight,
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: context.watch<AppTheme>().themeMode,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
