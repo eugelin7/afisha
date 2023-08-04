@@ -1,5 +1,5 @@
 import 'package:afisha/app/theme/app_theme.dart';
-import 'package:afisha/logic/app_provider.dart';
+import 'package:afisha/ui/screens/main_screen/screen_logic/action_handlers.dart';
 import 'package:afisha/ui/screens/main_screen/screen_logic/filter_provider.dart';
 import 'package:afisha/ui/screens/main_screen/screen_logic/main_screen_provider.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet/city_selector.dart';
@@ -20,16 +20,14 @@ class FilterSheet extends StatefulWidget {
 class _FilterSheetState extends State<FilterSheet> {
   late bool _countriesLoaded;
   late final FilterProvider _filterProv;
-  late final AppProvider _appProv;
   late final MainScreenProvider _mainScrProv;
 
   @override
   void initState() {
     super.initState();
     _filterProv = Provider.of<FilterProvider>(context, listen: false);
-    _appProv = Provider.of<AppProvider>(context, listen: false);
     _mainScrProv = Provider.of<MainScreenProvider>(context, listen: false);
-    _countriesLoaded = _filterProv.cities.isNotEmpty;
+    _countriesLoaded = _filterProv.countries.isNotEmpty;
   }
 
   @override
@@ -61,10 +59,10 @@ class _FilterSheetState extends State<FilterSheet> {
     return Container(
       width: MediaQuery.of(context).size.width,
       color: context.theme.colorScheme.primary.withOpacity(0.95),
-      padding: const EdgeInsets.fromLTRB(20, 27, 20, 10),
+      padding: const EdgeInsets.fromLTRB(20, 27, 20, 9),
       child: Column(
         children: [
-          //-----------
+          //-----
           Row(
             children: [
               SizedBox(
@@ -75,7 +73,7 @@ class _FilterSheetState extends State<FilterSheet> {
             ],
           ),
           const SizedBox(height: 14),
-          //-----------
+          //-----
           Row(
             children: [
               SizedBox(
@@ -86,7 +84,7 @@ class _FilterSheetState extends State<FilterSheet> {
             ],
           ),
           const SizedBox(height: 14),
-          //-----------
+          //-----
           Row(
             children: [
               SizedBox(
@@ -96,19 +94,13 @@ class _FilterSheetState extends State<FilterSheet> {
               const Expanded(child: DatesSelector()),
             ],
           ),
-          const SizedBox(height: 18),
-          //-----------
+          const SizedBox(height: 15),
+          //-----
           Row(
             children: [
               const Spacer(),
               IconButton(
-                onPressed: () {
-                  if (_appProv.filterParams == null) {
-                    _mainScrProv.setFilterSheetVisibility(false);
-                  }
-                  _filterProv.clearAllFields();
-                  _appProv.setFilterParams(null);
-                },
+                onPressed: () => ActionHandlers.onCancelFilterTap(context),
                 icon: Icon(
                   Icons.close,
                   size: 27,
@@ -129,6 +121,7 @@ class _FilterSheetState extends State<FilterSheet> {
               ),
             ],
           ),
+          //-----
         ],
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:afisha/app/theme/app_theme.dart';
-import 'package:afisha/logic/app_provider.dart';
+import 'package:afisha/ui/screens/main_screen/screen_logic/action_handlers.dart';
 import 'package:afisha/ui/screens/main_screen/screen_logic/filter_provider.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet/styles_filter_sheet.dart';
 import 'package:flutter/material.dart';
@@ -27,12 +27,7 @@ class CountrySelector extends StatelessWidget {
           iconSize: kDropDownIconSize,
           value: selectedCountry,
           items: countries.map((e) => DropdownMenuItem<String>(value: e, child: Text(e))).toList(),
-          onChanged: (value) {
-            final filterProv = Provider.of<FilterProvider>(context, listen: false);
-            final appProv = Provider.of<AppProvider>(context, listen: false);
-            filterProv.setSelectedCountry(value);
-            appProv.setFilterParams(filterProv.getFilterParams());
-          },
+          onChanged: (value) => ActionHandlers.onCountrySelect(context, value),
         ),
       ),
     );

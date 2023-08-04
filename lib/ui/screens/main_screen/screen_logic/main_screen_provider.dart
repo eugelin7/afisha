@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MainScreenProvider extends ChangeNotifier {
+  //-------------
   // Filter Sheet visibility
   bool _isFilterSheetVisible = false;
   bool get isFilterSheetVisible => _isFilterSheetVisible;
@@ -16,6 +17,7 @@ class MainScreenProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  //-------------
   // Location Bar visibility
   bool _isLocationBarVisible = false;
   bool get isLocationBarVisible => _isLocationBarVisible;

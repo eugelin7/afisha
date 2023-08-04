@@ -1,5 +1,6 @@
 import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/logic/app_provider.dart';
+import 'package:afisha/ui/screens/main_screen/screen_logic/action_handlers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,18 +10,10 @@ class FavIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isFavorite =
-        context.select<AppProvider, bool>((pr) => pr.favEventIds.contains(eventId));
+    final isFavorite = context.select<AppProvider, bool>((pr) => pr.favEventIds.contains(eventId));
 
     return GestureDetector(
-      onTap: () {
-        final appProv = Provider.of<AppProvider>(context, listen: false);
-        if (isFavorite) {
-          appProv.deleteEventFromFavList(eventId);
-        } else {
-          appProv.addEventToFavList(eventId);
-        }
-      },
+      onTap: () => ActionHandlers.onFavIconButtonTap(context, isFavorite, eventId),
       child: Container(
         width: 33,
         height: 33,

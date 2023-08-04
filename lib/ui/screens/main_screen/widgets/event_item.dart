@@ -16,9 +16,7 @@ class EventItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        context.pushNamed(EventScreen.name, pathParameters: {'id': event.id});
-      },
+      onTap: () => context.pushNamed(EventScreen.name, pathParameters: {'id': event.id}),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

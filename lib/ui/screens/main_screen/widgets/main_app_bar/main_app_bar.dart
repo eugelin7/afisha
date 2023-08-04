@@ -65,7 +65,7 @@ class _MainAppBarState extends State<MainAppBar> {
           color: context.theme.colorScheme.primary,
           child: Row(
             children: [
-              const SizedBox(width: 24 /* 48 */),
+              const SizedBox(width: 24),
               Expanded(
                 child: TextField(
                   controller: _searchTextController,

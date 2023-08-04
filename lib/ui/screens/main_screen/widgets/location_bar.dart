@@ -55,7 +55,9 @@ class __AnimatedLocationBarState extends State<_AnimatedLocationBar>
       if (status == AnimationStatus.completed) {
         _isTextVisible = true;
         setState(() {});
-        mainScreenProv.setLocationBarVisibility(true);
+        Future.delayed(const Duration(milliseconds: 50), () {
+          mainScreenProv.setLocationBarVisibility(true);
+        });
       }
     });
   }
@@ -71,7 +73,6 @@ class __AnimatedLocationBarState extends State<_AnimatedLocationBar>
     if (widget.animate) {
       _controller.forward();
     }
-
     return Container(
       width: double.infinity,
       height: widget.animate ? _animation.value * 68 : 68,
@@ -92,10 +93,10 @@ class __AnimatedLocationBarState extends State<_AnimatedLocationBar>
             children: [
               TextOneLine('yourCurrentLocation'.tr(), style: context.theme.textTheme.labelLarge),
               const SizedBox(height: 2.5),
-              TextOneLine(widget.locationStr,
-                  style:
-                      context.theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
-              //const SizedBox(height: 1),
+              TextOneLine(
+                widget.locationStr,
+                style: context.theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              ),
             ],
           ),
         ),

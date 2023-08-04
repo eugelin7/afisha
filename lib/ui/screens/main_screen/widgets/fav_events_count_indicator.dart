@@ -9,7 +9,6 @@ class FavEventsCountIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final favEventsCount = context.select<AppProvider, int>((pr) => pr.favEvents.length);
-
     if (favEventsCount == 0) return const SizedBox.shrink();
 
     final countText = (favEventsCount > 9) ? '9+' : favEventsCount.toString();
