@@ -50,5 +50,11 @@
   "locationServicesAreDisabled": "Сервис определения местоположения недоступен",
   "locationPermissionsAreDenied": "Нет прав доступа к сервису определения местоположения",
   "locationPermissionsArePermanentlyDenied": "Нет прав доступа к сервису определения местоположения",
-  "yourCurrentLocation": "Ваше местоположение:"
+  "yourCurrentLocation": "Ваше местоположение:",
+  "filterLabelCountry": "Страна :",
+  "filterLabelCity": "Город :",
+  "filterLabelDates": "Даты :",
+  "filterSelectCountryHint": "<Выберите страну>",
+  "filterSelectCityHint": "<Выберите город>",
+  "filterSelectDatesHint": "<Выберите даты>"
 }

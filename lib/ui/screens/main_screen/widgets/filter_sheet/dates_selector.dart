@@ -36,7 +36,7 @@ class DatesSelector extends StatelessWidget {
               isExpanded: true,
               isDense: true,
               hint: (datesStr == '')
-                  ? Text('<Select dates>', style: getHintTextStyle(context))
+                  ? Text('filterSelectDatesHint'.tr(), style: getHintTextStyle(context))
                   : const Text(''),
               style: getTextStyle(context),
               iconEnabledColor: Colors.transparent,

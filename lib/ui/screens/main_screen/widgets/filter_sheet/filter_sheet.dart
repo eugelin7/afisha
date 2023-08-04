@@ -7,6 +7,7 @@ import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet/country_selec
 import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet/dates_selector.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet/styles_filter_sheet.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -67,7 +68,7 @@ class _FilterSheetState extends State<FilterSheet> {
             children: [
               SizedBox(
                   width: kFieldTitleWidth,
-                  child: TextOneLine('Country :', style: getTextStyle(context))),
+                  child: TextOneLine('filterLabelCountry'.tr(), style: getTextStyle(context))),
               const SizedBox(width: 10),
               const Expanded(child: CountrySelector()),
             ],
@@ -78,7 +79,7 @@ class _FilterSheetState extends State<FilterSheet> {
             children: [
               SizedBox(
                   width: kFieldTitleWidth,
-                  child: TextOneLine('City :', style: getTextStyle(context))),
+                  child: TextOneLine('filterLabelCity'.tr(), style: getTextStyle(context))),
               const SizedBox(width: 10),
               const Expanded(child: CitySelector()),
             ],
@@ -89,7 +90,7 @@ class _FilterSheetState extends State<FilterSheet> {
             children: [
               SizedBox(
                   width: kFieldTitleWidth,
-                  child: TextOneLine('Dates :', style: getTextStyle(context))),
+                  child: TextOneLine('filterLabelDates'.tr(), style: getTextStyle(context))),
               const SizedBox(width: 10),
               const Expanded(child: DatesSelector()),
             ],

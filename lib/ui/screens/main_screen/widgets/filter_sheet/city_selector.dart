@@ -2,6 +2,7 @@ import 'package:afisha/app/theme/app_theme.dart';
 import 'package:afisha/ui/screens/main_screen/screen_logic/action_handlers.dart';
 import 'package:afisha/ui/screens/main_screen/screen_logic/filter_provider.dart';
 import 'package:afisha/ui/screens/main_screen/widgets/filter_sheet/styles_filter_sheet.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +21,7 @@ class CitySelector extends StatelessWidget {
         child: DropdownButton(
           isExpanded: true,
           isDense: true,
-          hint: Text('<Select city>',
+          hint: Text('filterSelectCityHint'.tr(),
               style: (cities.isEmpty)
                   ? getHintTextStyle(context)
                       ?.copyWith(color: getHintTextStyle(context)?.color?.withOpacity(0.35))
